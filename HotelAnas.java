@@ -60,6 +60,10 @@ public class HotelAnas {
                     firstFree();
                     break;
 
+                case 5:
+                    findThree();
+                    break;
+
                 case 0:
                 default:
                     breakTheLoop = true;
@@ -128,6 +132,30 @@ public class HotelAnas {
 
         System.out.println("No free room found");
         return;
+    }
+
+    public static void findThree() {
+        // This method is used to find three consecutive rooms that are open in the
+        // floor plan. It then prints the floor number and the room numbers for each
+        // room.
+
+        System.out.println();
+        for (int i = 0; i < FLOORPLAN.length; i++) {
+            for (int j = 0; j < FLOORPLAN[i].length; j++) {
+
+                if (!FLOORPLAN[i][j] && !FLOORPLAN[i][j + 1] && !FLOORPLAN[i][j + 2]) {
+                    // checking if rooms j, j + 1 and j + 2 are open on floor i
+                    System.out.println("Three rooms available in Floor " + (i + 1));
+                    System.out.println("Room numbers: " + (j + 1) + ", " + (j + 2) + " and " + (j + 3));
+                    System.out.println();
+                    return;
+                }
+
+            }
+        }
+
+        System.out.println("No three consecutive rooms are available.");
+        System.out.println();
     }
 
     public static void initRooms() {
