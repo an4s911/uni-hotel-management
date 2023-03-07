@@ -36,6 +36,22 @@ public class HotelAnas {
                     printFloorPlan();
                     break;
 
+                case 2:
+                    printFloorPlan();
+
+                    // -1 at the end because humans start counting from 1 but java starts from 0
+                    int floor = takeInput("Please enter the floor number: ",
+                            FLOORPLAN.length, false, sc) - 1;
+
+                    printSingleFloor(floor, false);
+
+                    int roomNumber = takeInput("and the room number: ",
+                            FLOORPLAN[0].length, false, sc) - 1;
+
+                    bookARoom(floor, roomNumber);
+
+                    break;
+
                 case 0:
                 default:
                     breakTheLoop = true;
@@ -54,6 +70,21 @@ public class HotelAnas {
         }
 
         sc.close(); // Close the scanner to prevent memory leaks
+    }
+
+    public static void bookARoom(int floor, int roomNumber) {
+        // This method is used to book a room in the given floor.
+        // It checks if the room is already booked and prints a
+        // message if it is and books the room otherwise and prints a message.
+
+        if (FLOORPLAN[floor][roomNumber]) {
+            System.out.println("\nRoom is already booked\n");
+            return;
+        }
+
+        FLOORPLAN[floor][roomNumber] = true;
+        System.out.println("\nRoom " + (roomNumber + 1) + " on floor " + (floor + 1) + " has been booked for you.\n");
+        return;
     }
 
     public static void initRooms() {
