@@ -30,6 +30,22 @@ public class HotelAnas {
 
             int choice = takeInput("Enter your choice: ", 6, true, sc);
 
+            switch (choice) {
+                case 1:
+                    System.out.println("\n--- FLOOR PLAN ---");
+                    printFloorPlan();
+                    break;
+
+                case 0:
+                default:
+                    breakTheLoop = true;
+                    break;
+            }
+
+            sc.nextLine(); // Clears the input
+
+            System.out.println("--------------------------------");
+
             if (!breakTheLoop) {
                 System.out.println("Press enter to continue...");
                 sc.nextLine(); // Waits for the user to press enter before showing the menu again
@@ -55,6 +71,51 @@ public class HotelAnas {
 
             }
         }
+    }
+
+    public static void printFloorPlan() {
+        // Print the entire floor plan.
+        System.out.println("\nX for closed rooms and empty for open rooms.\n");
+
+        for (int i = 0; i < FLOORPLAN.length; i++) {
+            printSingleFloor(i, true);
+        }
+    }
+
+    public static void printSingleFloor(int floor, boolean batch) {
+        // Print a single floor.
+
+        // If batch is true that means that it is printing mutliple floors.
+        // so it doesn't need the room numbers on the top. If the room number is needed,
+        // then that should be implemented in the printFloorPlan method.
+        if (!batch) {
+            System.out.println("\n--------------------------------");
+            System.out.print("Room numbers:\t");
+
+            int roomsPerFloor = FLOORPLAN[floor].length;
+
+            for (int i = 1; i <= roomsPerFloor; i++) {
+                System.out.print("[" + i + "] ");
+            }
+
+            System.out.println();
+        }
+
+        // X for closed room and empty for open room.
+        // floor + 1 because humans count from 1 but
+        // java counts from 0.
+        System.out.print("Floor " + (floor + 1) + ":\t");
+        for (int i = 0; i < FLOORPLAN[floor].length; i++) {
+
+            if (FLOORPLAN[floor][i]) {
+                System.out.print("[X] ");
+            } else {
+                System.out.print("[ ] ");
+            }
+
+        }
+
+        System.out.println("\n");
     }
 
     public static int takeInput(String prompt, int limit, boolean includeZero, Scanner sc) {
