@@ -37,6 +37,7 @@ public class HotelAnas {
                     break;
 
                 case 2:
+                case 3:
                     printFloorPlan();
 
                     // -1 at the end because humans start counting from 1 but java starts from 0
@@ -48,7 +49,10 @@ public class HotelAnas {
                     int roomNumber = takeInput("and the room number: ",
                             FLOORPLAN[0].length, false, sc) - 1;
 
-                    bookARoom(floor, roomNumber);
+                    if (choice == 2)
+                        bookARoom(floor, roomNumber);
+                    else
+                        freeARoom(floor, roomNumber);
 
                     break;
 
@@ -84,6 +88,21 @@ public class HotelAnas {
 
         FLOORPLAN[floor][roomNumber] = true;
         System.out.println("\nRoom " + (roomNumber + 1) + " on floor " + (floor + 1) + " has been booked for you.\n");
+        return;
+    }
+
+    public static void freeARoom(int floor, int roomNumber) {
+        // This method is used to free a room in the given floor.
+        // It checks if the room is already free and prints a
+        // message if it is and free the room otherwise and prints a message.
+
+        if (!FLOORPLAN[floor][roomNumber]) { // if false
+            System.out.println("Room is already vacant.");
+            return;
+        }
+
+        FLOORPLAN[floor][roomNumber] = false; // It is not free, so make it free
+        System.out.println("\nRoom has been vacated.\n");
         return;
     }
 
