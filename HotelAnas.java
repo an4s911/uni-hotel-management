@@ -145,7 +145,7 @@ public class HotelAnas {
 
         System.out.println();
         for (int i = 0; i < FLOORPLAN.length; i++) {
-            for (int j = 0; j < FLOORPLAN[i].length; j++) {
+            for (int j = 0; j < FLOORPLAN[i].length - 2; j++) {
 
                 if (!FLOORPLAN[i][j] && !FLOORPLAN[i][j + 1] && !FLOORPLAN[i][j + 2]) {
                     // checking if rooms j, j + 1 and j + 2 are open on floor i
