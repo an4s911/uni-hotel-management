@@ -56,6 +56,10 @@ public class HotelAnas {
 
                     break;
 
+                case 4:
+                    firstFree();
+                    break;
+
                 case 0:
                 default:
                     breakTheLoop = true;
@@ -103,6 +107,26 @@ public class HotelAnas {
 
         FLOORPLAN[floor][roomNumber] = false; // It is not free, so make it free
         System.out.println("\nRoom has been vacated.\n");
+        return;
+    }
+
+    public static void firstFree() {
+        // This method returns the first free room in the given range.
+        // It search for the given range in each floor and returns an array
+        // with the floor number and the room number.
+
+        for (int i = 0; i < FLOORPLAN.length; i++) {
+            for (int j = 0; j < FLOORPLAN[i].length; j++) {
+
+                if (!FLOORPLAN[i][j]) {
+                    System.out.println("\nFree room found in floor " + (i + 1) + " and room number " + (j + 1) + "\n");
+                    return;
+                }
+
+            }
+        }
+
+        System.out.println("No free room found");
         return;
     }
 
