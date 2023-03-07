@@ -64,6 +64,10 @@ public class HotelAnas {
                     findThree();
                     break;
 
+                case 6:
+                    System.out.println("\nTotal number of occupied rooms: " + occupiedCount() + "\n");
+                    break;
+
                 case 0:
                 default:
                     breakTheLoop = true;
@@ -156,6 +160,23 @@ public class HotelAnas {
 
         System.out.println("No three consecutive rooms are available.");
         System.out.println();
+    }
+
+    public static int occupiedCount() {
+        // This method is used to count the number of occupied rooms in the floor plan.
+
+        int count = 0;
+        for (int i = 0; i < FLOORPLAN.length; i++) {
+            for (int j = 0; j < FLOORPLAN[i].length; j++) {
+
+                if (FLOORPLAN[i][j]) {
+                    count++;
+                }
+
+            }
+        }
+
+        return count;
     }
 
     public static void initRooms() {
